@@ -1,0 +1,1 @@
+# Java tests best practices

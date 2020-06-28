@@ -7,6 +7,7 @@ public abstract class AbstractCustomer {
     private int index;
     private String city;
     private String country;
+    private Address address;
 
     public abstract String getWelcomeName();
 
@@ -25,7 +26,6 @@ public abstract class AbstractCustomer {
     public void setIndex(int index) {
         this.index = index;
     }
-
     public String getCity() {
         return city;
     }
@@ -40,6 +40,14 @@ public abstract class AbstractCustomer {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     @Override

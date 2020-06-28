@@ -17,9 +17,8 @@ public class PersonBuilder<T extends Person> extends CustomerBuilder<T, PersonBu
     }
 
     @Override
-    public T build() {
+    protected T createCustomer() {
         T person = (T) new Person();
-        super.setCustomerFields(person);
         person.setFirstName(this.firstName);
         person.setLastName(this.lastName);
 

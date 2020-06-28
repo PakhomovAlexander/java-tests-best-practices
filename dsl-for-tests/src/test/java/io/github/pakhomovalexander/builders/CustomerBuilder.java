@@ -3,20 +3,28 @@ package io.github.pakhomovalexander.builders;
 import io.github.pakhomovalexander.domain.AbstractCustomer;
 import io.github.pakhomovalexander.domain.Address;
 
-public abstract class CustomerBuilder<T extends AbstractCustomer, B extends CustomerBuilder<T, B>> implements GenericBuilder<T,B> {
-    Address address;
+public abstract class CustomerBuilder<T extends AbstractCustomer, B extends CustomerBuilder<T, B>>
+        implements GenericBuilder<T,B> {
+
+    private Address address;
 
     public GenericBuilder<T,B> address(Address address) {
         this.address = address;
-        return (B) this;
+        return this;
     }
 
-    public GenericBuilder<T,B> address(AddressBuilder addressBuilder) {
+    public GenericBuilder<T,B> address(AddressBuilder<Address> addressBuilder) {
         this.address = addressBuilder.build();
-        return (B) this;
+        return this;
     }
 
-    protected void setCustomerFields(T customer) {
-        customer.setAddress(this.address);
+    protected abstract T createCustomer();
+
+    @Override
+    public T build() {
+        T customer = createCustomer();
+        customer.setAddress(address);
+
+        return customer;
     }
 }

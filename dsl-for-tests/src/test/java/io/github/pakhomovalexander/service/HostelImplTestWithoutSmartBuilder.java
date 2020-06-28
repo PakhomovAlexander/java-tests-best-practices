@@ -2,6 +2,7 @@ package io.github.pakhomovalexander.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import io.github.pakhomovalexander.domain.Address;
 import io.github.pakhomovalexander.domain.Organisation;
 import io.github.pakhomovalexander.domain.Person;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,11 +19,14 @@ class HostelImplTestWithoutSmartBuilder {
     @Test
     void shouldWelcomePerson() {
         // Given
+        Address address = new Address();
+        address.setCountry("Russia");
+        address.setCity("Moscow");
+        // And
         Person person = new Person();
         person.setFirstName("Alexander");
         person.setLastName("Pakhomov");
-        person.setCountry("Russia");
-        person.setCity("Moscow");
+        person.setAddress(address);
 
         // When
         String welcomeMessage = service.getWelcome(person);
@@ -34,11 +38,14 @@ class HostelImplTestWithoutSmartBuilder {
     @Test
     void shouldWelcomePersonWithEmptyCountry() {
         // Given
+        Address address = new Address();
+        address.setCountry("");
+        address.setCity("Moscow");
+        // And
         Person person = new Person();
         person.setFirstName("Alexander");
         person.setLastName("Pakhomov");
-        person.setCountry("");
-        person.setCity("Moscow");
+        person.setAddress(address);
 
         // When
         String welcomeMessage = service.getWelcome(person);
@@ -50,10 +57,13 @@ class HostelImplTestWithoutSmartBuilder {
     @Test
     void shouldWelcomeOrganisation() {
         // Given
+        Address address = new Address();
+        address.setCountry("Russia");
+        address.setCity("Moscow");
+        // And
         Organisation organisation = new Organisation();
         organisation.setOrganisationName("Apple Inc");
-        organisation.setCountry("Russia");
-        organisation.setCity("Moscow");
+        organisation.setAddress(address);
 
         // When
         String welcomeMessage = service.getWelcome(organisation);

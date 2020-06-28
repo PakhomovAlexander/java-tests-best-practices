@@ -4,6 +4,10 @@ import java.util.Objects;
 
 public class Address {
     private String street;
+    private String city;
+    private String country;
+    private int house;
+    private int index;
 
     public String getStreet() {
         return street;
@@ -29,9 +33,21 @@ public class Address {
         this.house = house;
     }
 
-    private String city;
-    private int house;
+    public String getCountry() {
+        return country;
+    }
 
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -39,13 +55,15 @@ public class Address {
         if (o == null || getClass() != o.getClass()) return false;
         Address address = (Address) o;
         return house == address.house &&
+                index == address.index &&
                 Objects.equals(street, address.street) &&
-                Objects.equals(city, address.city);
+                Objects.equals(city, address.city) &&
+                Objects.equals(country, address.country);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(street, city, house);
+        return Objects.hash(street, city, country, house, index);
     }
 
     @Override
@@ -53,7 +71,9 @@ public class Address {
         return "Address{" +
                 "street='" + street + '\'' +
                 ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
                 ", house=" + house +
+                ", index=" + index +
                 '}';
     }
 }
